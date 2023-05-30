@@ -20,8 +20,8 @@ class TestCase:
         self,
         test_name: str,
         file: str,
-        expected_result,
-        expected_speed = None,
+        expected_result: str | None,
+        expected_speed: int | None = None,
     ):
         self.file = file
         self.expected_result = expected_result
@@ -169,7 +169,7 @@ class TestSuite:
         if status != 0:
             print("Error al compilar: ", path)
 
-    def extractExpectedResult(self, path: str):
+    def extractExpectedResult(self, path: str) -> str | None:
         with open(path, "r") as file:
             content = file.readlines()
 
@@ -185,7 +185,7 @@ class TestSuite:
         print_verbose(verbose_level_all, expected)
         return expected
 
-    def extractExpectedSpeed(self, path: str):
+    def extractExpectedSpeed(self, path: str) -> int | None:
         with open(path, "r") as file:
             content = file.readlines()
 
@@ -203,15 +203,14 @@ class TestSuite:
 
     def run_all(self) -> None:
         for test in self.test:
-            #test.run("F:/Cosas/Uni-Docs/Arquitectura de computadoras/Recursos-20230220/logisim-win-2.7.1.exe", self.circ, self.template)
-            test.run("D:/projects/micro/software/logisim-win-2.7.1.exe", self.circ, self.template)
+            test.run("logisim", self.circ, self.template)
             self.failed |= test.failed
             test.print()
 
     def run_test(self, test_name: str) -> None:
         for test in self.test:
             if test.name == test_name:
-                test.run("D:/projects/micro/software/logisim-win-2.7.1.exe", self.circ, self.template)
+                test.run("logisim", self.circ, self.template)
                 self.failed |= test.failed
                 test.print()
 
