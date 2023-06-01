@@ -1,1 +1,20 @@
+Correr los tests en la carpeta tests ensamblandolos dentro de la carpeta tests-out
+
 test.py "tests" "s-mips.circ" -o "tests-out" -v 4
+
+
+Ensamblar archivo elmio.asm en la carpeta elm
+
+assembler.py tests\elmio.asm -o .\elm
+
+
+Precio de S-MIPS
+
+price.py s-mips.circ S-MIPS
+
+el dispatcher lo q hace es insertar las cosas en los bancos de la ram del banco 0 al 3 linea a linea
+
+puedes insertar en el banco del dispatcher y resetear para q se reparta, o insertar en los 4 bancos de la ram y deshabilitar el dispatcher
+
+si alguna de las lineas da bateo anadir py delante o python, en correspondencia
+
